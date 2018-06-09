@@ -1,0 +1,36 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        String a = scanner.nextLine();
+        
+        String b = scanner.nextLine();
+        StringBuilder sbb = new StringBuilder(b);
+        StringBuilder sba = new StringBuilder(a);
+        int count=0,i=0,j=0;
+        boolean match;
+        int total = a.length() + b.length(); 
+        scanner.close();
+        
+            for(i=0;i<b.length();i++){
+               match = a.contains(Character.toString(sbb.charAt(i)));
+                if(match == true){
+                j = a.indexOf(sbb.charAt(i));
+                sba.delete(j,j+1); 
+                a = sba.toString();
+                count = count + 1;
+                }   
+            }
+        System.out.print( total - count*2);  
+        
+    }
+}
