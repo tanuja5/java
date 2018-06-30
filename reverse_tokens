@@ -1,0 +1,26 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner sc = new Scanner(System.in);
+		int i = sc.nextInt();
+		while(i > 0){
+		String str = sc.next();
+		StringTokenizer st = new StringTokenizer(str,".");
+		while(st.hasMoreTokens()){
+		    StringBuilder sb = new StringBuilder(st.nextToken());
+		    if(st.hasMoreTokens())
+		    System.out.print(sb.reverse()+".");
+		    else
+		    System.out.print(sb.reverse());
+		}
+		System.out.println();
+		i--;
+		}
+	}
+}
