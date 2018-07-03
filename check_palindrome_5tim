@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gfg;
+
+/**
+ *
+ * @author 1997.tanuja
+ */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+    static int cnt=0;
+	public static void main (String[] args) {
+		//code
+		Scanner sc = new Scanner(System.in);
+		int n,numb,rev=0;
+		
+		String pal="";
+		int tc = sc.nextInt();
+		while(tc > 0){
+		    numb = sc.nextInt();
+		    rev = reverses(numb);
+		    pal = Integer.toString(numb+rev);
+		    int suc = checkrev(pal);
+		    while(suc != 0 || cnt < 5 ){
+		        numb = Integer.parseInt(pal);
+		        rev = reverses(numb);
+		        pal = Integer.toString(numb+rev);
+		        suc = checkrev(pal);}
+      tc--;
+		}
+	}
+	public static int reverses(int n){
+	    int rev=0;
+	while(n >0){
+		        rev = (rev*10) + (n%10);
+		        n = n /10;
+		    }
+		    return rev;
+}
+    public static int checkrev(String pal){
+        String reverse="";
+        for (int i = pal.length() - 1; i >= 0; i--)  
+                 reverse = reverse + pal.charAt(i);  
+        if (pal.equals(reverse))  {
+             System.out.println(pal);
+             return 0;}
+        else {
+            if(cnt > 5){
+            System.out.println(-1);
+            return 0;
+            }
+               cnt--;
+               return 1;
+               }
+    }
+}
+    
