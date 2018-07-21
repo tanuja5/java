@@ -1,0 +1,129 @@
+//This is The Coding Area
+import java.io.*;
+
+public class solution{
+public class node{
+    int val;
+    node next;
+    node prev;
+    public node(int x,node next,node prev){
+        this.val=x;
+        this.next=next;
+        this.prev=prev;
+    }
+}
+static node head;
+static node tail;
+static int length;
+public solution(){
+    length=0;
+    head=null;
+    tail=null;
+}
+public void addathead(int x){
+    node temp= new node(x,head,null);
+    if(head!=null){
+        head.prev=temp;
+    }
+    head=temp;
+    if(tail==null){
+        tail=temp;
+    }
+    length++;
+    System.out.print("Value after addition at head: ");
+}
+public void addatpos(int val, int pos){
+    node temp=new node(val,null,null);
+    node loopt = head;
+    int cnt=1,f=0;
+    while(loopt!=null && cnt < pos){
+        if(loopt.next!=null){
+        loopt=loopt.next;
+        }
+        else f=1;
+        cnt++;
+    }
+    
+    if(f==0)
+    loopt=loopt.prev;
+    
+    if(loopt!=null && cnt>1){
+        temp.prev=loopt;
+        if(loopt.next!=null) {
+            loopt.next.prev=temp;
+            temp.next=loopt.next;
+        }
+        else{
+            loopt.next=temp;
+            tail=temp;
+        }
+        loopt.next=temp;
+        System.out.print("Value after addition at pos "+ pos +":");
+    }
+    else{
+        System.out.println("no such position, please enter at beggining or a valid position");
+    }
+    length++;
+}
+public void delathead(){
+    System.out.println("Deleting head: "+head.val);
+    head=head.next;
+     System.out.println("after deletion at head: ");
+}
+public void delatpos(int pos){
+    node loopt = head;
+    int cnt=1,f=0;
+    while(loopt!=null && cnt < pos){
+        if(loopt.next!=null){
+        loopt=loopt.next;
+        }
+        else f=1;
+        cnt++;
+    }
+    if(f==0)
+    loopt=loopt.prev;
+    
+    if(loopt!=null && cnt>1){
+    if(loopt.next!=null){
+    if(loopt.next.next!=null){
+    System.out.println("Deleting : "+ loopt.next.val + "at position "+ pos);
+    loopt.next=loopt.next.next;
+    loopt.next.prev=loopt;
+    }
+    else { 
+    System.out.println("Deleting : "+ loopt.next.val + "at position "+ pos);
+        tail= loopt; 
+        loopt.next=null;}
+    }
+    else { 
+        System.out.println("nothing to delete");
+        tail= loopt;  }
+        System.out.println("after deletion at pos " + pos + ": ");
+    }
+    else
+    System.out.println("no such position, please del at beggining or a valid position");
+    
+}
+public void show(){
+    node temp=head;
+    while(temp!=null){
+        System.out.print(temp.val);
+        System.out.print("->");
+        temp=temp.next;
+    }
+    System.out.println();
+}
+public static void main(String[] args){
+    solution s = new solution();
+    s.addathead(5); s.show();
+    s.addathead(6); s.show();
+    s.addatpos(3,2); s.show();
+    s.addatpos(9,4); s.show();
+    s.addatpos(7,2); s.show();
+    s.delathead(); s.show();
+    s.delatpos(2); s.show();
+    s.delatpos(3); s.show();
+    
+}
+
+}
